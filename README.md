@@ -89,10 +89,27 @@ This function returns a full timestamp in the ISO format 'Y-m-d H:i', from broke
 *string* - minute number as string. e.g. '04', '13', '19'.
 
 
-
 ### Use in a LOOP
-When using this in a loop all the template tags should work fine. If you wanna loop through the events you need to loop through the post type 'event', with a normal WP_Query.
+When using this in a loop all the template tags should work fine. If you want to loop through the events you need to loop through the post type 'event', with a normal WP_Query. At this point you might want to use a meta_query to sort the event or post by the start date, and only show future dates. The WP_Query could look something like this:
+```PHP	
+		$today = new DateTime();
+		$args = array(
+			'post_type' => 'your-post-type',
+			'orderby' => 'meta_value',
+			'meta_key' => ' mcal_start',
+			'order' => 'ASC',
+			'meta_query' => array(
+					array(
+						'key' => 'mcal_end',
+						'value' => $today->format('Y-m-d H:i'),
+						'compare' => '>='
+					)
+				),
+		);
+		$query = new WP_Query( $args );
 
+		...theloop
+```
 
 
 ###Translations
