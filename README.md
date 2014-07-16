@@ -55,7 +55,7 @@ This function returns the end date of the current post. If the posttype is an ev
 *integer* - the id that specifies the post from which to check the all day value.
 
 
-### the_date_range
+### the_date_range()
 This function echos the daterange as a string, intelligently formatting the strings. e.g. "3. September - 5. September 2014". Note that if both dates are in the same year, the year will be removed from the start date. This same behavior might be added to the month variable.
 
 ```PHP
