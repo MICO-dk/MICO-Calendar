@@ -95,12 +95,12 @@
 
 
 
+// Fix for missing arraows on datepicker
 
-
-
-
-
-
+.ui-acf .ui-datepicker .ui-datepicker-prev, 
+.ui-acf .ui-datepicker .ui-datepicker-next {
+	display: block;
+}
 
 
 
