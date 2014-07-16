@@ -122,3 +122,7 @@ So far it has been translated into:
 * Make an advanced selectbox for the events related id box.
 * Make it possible to add events on the calendar view. and possibly move events around between posts.
 * Make the 2nd datebox automatically change to the same as start date - if end date is lower than start. (js-side). See: https://forum.jquery.com/topic/two-datepickers-set-default-date-of-2nd-picker-question
+
+
+##Known bugs
+* Special character (') displayed as unicode in Calendar view. See screenshot in screenshots/bug01.png
