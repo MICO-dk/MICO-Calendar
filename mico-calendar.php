@@ -171,7 +171,6 @@ function the_date_range($post = NULL) {
 		return;
 	}
 
-
 	// Retrieve dates without time
 	$start_date = get_start_date('Y-m-d', $post);
 	$end_date = get_end_date('Y-m-d', $post);
@@ -187,14 +186,13 @@ function the_date_range($post = NULL) {
 		return;
 	}
 
-	// If the events start and end dates are in the same year
-	if($start_date_year == $end_date_year) {
+	if (get_option('mcal_force_year') != 1 && $start_date_year == $end_date_year) {
 		// remove the year from the start date
-		$start_format = str_replace(array('Y', 'y', 'o'), array('', '', ''), get_option( 'date_format' ) ) ;
+		$start_format = str_replace(array(', Y', 'y', 'o', 'Y'), array('', '', '', ''), get_option( 'date_format' ) ) ;
 	} else {
 		$start_format = get_option( 'date_format');
 	}
-
+	
 	echo get_start_date($start_format, $post) . ' - ' . get_end_date('', $post);
 	return;
 }

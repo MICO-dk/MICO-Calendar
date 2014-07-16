@@ -766,9 +766,7 @@ class MICO_Calendar {
 		    // The name of the section to which this field belongs
 		    $this->plugin_slug . '-settings',
 		    // The array of arguments to pass to the callback. In this case, just a description.
-		    array(
-		        'Activate this setting to display the header.'
-		    )
+		    array('')
 		);
 		 
 		 // show events field
@@ -784,7 +782,23 @@ class MICO_Calendar {
 		    // The name of the section to which this field belongs
 		    $this->plugin_slug . '-settings',
 		    // The array of arguments to pass to the callback. In this case, just a description.
-		    array('Activate this setting to display the header.')
+		    array('')
+		);
+
+		// Force year in get_date_range()
+		add_settings_field( 
+		    // ID used to identify the field throughout the plugin
+			$this->plugin_db_prefix . '_force_year',
+		    // The label to the left of the option interface element
+		    __('Force year in date range', 'mico-calendar'),
+		    // The name of the function responsible for rendering the option interface
+		    array($this, 'display_force_year_field'),
+		    // The page on which this option will be displayed
+		    $this->plugin_slug . '-settings',
+		    // The name of the section to which this field belongs
+		    $this->plugin_slug . '-settings',
+		    // The array of arguments to pass to the callback. In this case, just a description.
+		    array('')
 		);
 
 		// Finally, we register the fields with WordPress
@@ -799,6 +813,12 @@ class MICO_Calendar {
 		    $this->plugin_db_prefix . '_mico_calendar',
 		    //name of field
 		    $this->plugin_db_prefix . '_show_events_in_admin'
+		);
+		register_setting(
+		    //group name. security. Must match the settingsfield() on form page
+		    $this->plugin_db_prefix . '_mico_calendar',
+		    //name of field
+		    $this->plugin_db_prefix . '_force_year'
 		);
 
 	}
@@ -821,6 +841,16 @@ class MICO_Calendar {
 	 */
 	public function display_show_events_in_admin_field($args) {
 		include_once( 'views/field-show-events-in-admin.php' );
+	}
+
+	/**
+	 * Render the force_year field
+	 *
+	 * @since    1.0.0
+	 * @param    $args 		Optional arguments passed by the add_settings_field function.
+	 */
+	public function display_force_year_field($args) {
+		include_once( 'views/field-force-year.php' );
 	}
 
 

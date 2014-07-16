@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: mico-calendar\n"
-"POT-Creation-Date: 2014-07-16 08:19+0100\n"
-"PO-Revision-Date: 2014-07-16 10:16+0100\n"
+"POT-Creation-Date: 2014-07-16 15:37+0100\n"
+"PO-Revision-Date: 2014-07-16 15:38+0100\n"
 "Last-Translator: Malthe Milthers <malthe@milthers.dk>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -38,12 +38,12 @@ msgctxt "add new on admin bar"
 msgid "Event"
 msgstr ""
 
-#: ../class-mico-calendar.php:393 ../class-mico-calendar.php:871
+#: ../class-mico-calendar.php:393 ../class-mico-calendar.php:902
 msgctxt "event"
 msgid "Add New"
 msgstr ""
 
-#: ../class-mico-calendar.php:394 ../class-mico-calendar.php:869
+#: ../class-mico-calendar.php:394 ../class-mico-calendar.php:900
 msgid "Add New Event"
 msgstr ""
 
@@ -92,30 +92,39 @@ msgstr ""
 msgid "Calendar"
 msgstr ""
 
-#: ../class-mico-calendar.php:694
+#: ../class-mico-calendar.php:695
 msgid "Mico Calendar Settings"
 msgstr ""
 
-#: ../class-mico-calendar.php:696
+#: ../class-mico-calendar.php:697
 msgid "Mico Calendar"
 msgstr ""
 
-#: ../class-mico-calendar.php:727
+#: ../class-mico-calendar.php:728
 msgid "Settings"
 msgstr ""
 
-#: ../class-mico-calendar.php:778
+#: ../class-mico-calendar.php:777
 msgid "Show events admin menu"
 msgstr ""
 
-#: ../class-mico-calendar.php:835
+#: ../class-mico-calendar.php:793
+msgid "Force year in date range"
+msgstr ""
+
+#: ../class-mico-calendar.php:866
 msgctxt "admin page title"
 msgid "Calendar"
 msgstr ""
 
-#: ../class-mico-calendar.php:837
+#: ../class-mico-calendar.php:868
 msgctxt "admin menu title"
 msgid "Calendar"
+msgstr ""
+
+#: ../views/field-force-year.php:19
+msgid ""
+"this will force the date range to always include both start and end year."
 msgstr ""
 
 #: ../views/field-show-events-in-admin.php:19
@@ -125,13 +134,16 @@ msgid ""
 msgstr ""
 
 #: ../views/meta-box-eventform-buttons.php:3
-#: ../views/meta-box-eventslist.php:87
-msgid "Add event"
+msgid "Save event"
 msgstr ""
 
 #: ../views/meta-box-eventform-buttons.php:4
 #: ../views/meta-box-eventlist-row.php:15
 msgid "Update event"
+msgstr ""
+
+#: ../views/meta-box-eventform-buttons.php:6
+msgid "Cancel"
 msgstr ""
 
 #: ../views/meta-box-eventlist-eventform.php:5
@@ -163,6 +175,10 @@ msgstr ""
 
 #: ../views/meta-box-eventslist.php:70
 msgid "No events yet"
+msgstr ""
+
+#: ../views/meta-box-eventslist.php:87
+msgid "Add event"
 msgstr ""
 
 #: ../views/meta-box-eventslist.php:89

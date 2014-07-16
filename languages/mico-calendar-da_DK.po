@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: mico-calendar\n"
-"POT-Creation-Date: 2014-07-16 10:27+0100\n"
-"PO-Revision-Date: 2014-07-16 10:28+0100\n"
+"POT-Creation-Date: 2014-07-16 15:38+0100\n"
+"PO-Revision-Date: 2014-07-16 15:39+0100\n"
 "Last-Translator: Malthe Milthers <malthe@milthers.dk>\n"
 "Language-Team: \n"
 "Language: da_DK\n"
@@ -38,12 +38,12 @@ msgctxt "add new on admin bar"
 msgid "Event"
 msgstr "Begivenhed"
 
-#: ../class-mico-calendar.php:393 ../class-mico-calendar.php:871
+#: ../class-mico-calendar.php:393 ../class-mico-calendar.php:902
 msgctxt "event"
 msgid "Add New"
 msgstr "Tilføj Ny"
 
-#: ../class-mico-calendar.php:394 ../class-mico-calendar.php:869
+#: ../class-mico-calendar.php:394 ../class-mico-calendar.php:900
 msgid "Add New Event"
 msgstr "Tilføj Ny Begivenhed"
 
@@ -92,31 +92,42 @@ msgstr "Begivenhedsinfo"
 msgid "Calendar"
 msgstr "Kalender"
 
-#: ../class-mico-calendar.php:694
+#: ../class-mico-calendar.php:695
 msgid "Mico Calendar Settings"
 msgstr "Mico Kalender instillinger"
 
-#: ../class-mico-calendar.php:696
+#: ../class-mico-calendar.php:697
 msgid "Mico Calendar"
 msgstr "Mico Kalender"
 
-#: ../class-mico-calendar.php:727
+#: ../class-mico-calendar.php:728
 msgid "Settings"
 msgstr "Instillinger"
 
-#: ../class-mico-calendar.php:778
+#: ../class-mico-calendar.php:777
 msgid "Show events admin menu"
 msgstr "Vis begivenheder i administrationsmenuen"
 
-#: ../class-mico-calendar.php:835
+#: ../class-mico-calendar.php:793
+msgid "Force year in date range"
+msgstr "Vis altid årstal"
+
+#: ../class-mico-calendar.php:866
 msgctxt "admin page title"
 msgid "Calendar"
 msgstr "Kalender"
 
-#: ../class-mico-calendar.php:837
+#: ../class-mico-calendar.php:868
 msgctxt "admin menu title"
 msgid "Calendar"
 msgstr "Kalender"
+
+#: ../views/field-force-year.php:19
+msgid ""
+"this will force the date range to always include both start and end year."
+msgstr ""
+"Dette vil tvinge perioden til altid at inkludere årstal for både startdato "
+"og slutdato"
 
 #: ../views/field-show-events-in-admin.php:19
 msgid ""
@@ -127,9 +138,8 @@ msgstr ""
 "være praktisk når man skal finde fejl."
 
 #: ../views/meta-box-eventform-buttons.php:3
-#: ../views/meta-box-eventslist.php:87
-msgid "Add event"
-msgstr "Tilføj begivenhed"
+msgid "Save event"
+msgstr "Gem begivenhed"
 
 #: ../views/meta-box-eventform-buttons.php:4
 #: ../views/meta-box-eventlist-row.php:15
@@ -170,6 +180,10 @@ msgstr "Dato"
 #: ../views/meta-box-eventslist.php:70
 msgid "No events yet"
 msgstr "Endnu ingen begivenheder"
+
+#: ../views/meta-box-eventslist.php:87
+msgid "Add event"
+msgstr "Tilføj begivenhed"
 
 #: ../views/meta-box-eventslist.php:89
 msgid "New event"
