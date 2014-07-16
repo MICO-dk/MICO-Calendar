@@ -327,9 +327,12 @@ class MICO_Calendar {
 	 */
 	public function load_plugin_textdomain() {
 		$domain = $this->plugin_slug;
+
 		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
+		$fullpath = dirname( basename( plugins_url() ) ) . '/' . basename(dirname(__FILE__))  . '/languages/';
+	
 		load_textdomain( $domain, trailingslashit( WP_LANG_DIR ) . $domain . '/' . $domain . '-' . $locale . '.mo' );
-		load_plugin_textdomain( $domain, false, dirname( basename( plugins_url() ) ) . '/' . $domain  . '/languages/' );		
+		load_plugin_textdomain( $domain, false, $fullpath );		
 	
 	}
 
