@@ -23,7 +23,7 @@ These template tags are intended to feel as natural as any other wordpress templ
 This function returns either a boolean value, or - if $chekit is set to true - echos the word checked, if the current event has all day checked.
 ```PHP
 <?php is_all_day($checkit, $post) ?>
-``
+```
 
 - **$checkit** (optional)  
 *boolean* - wether or not to output the word 'checked', when all day is checked.
