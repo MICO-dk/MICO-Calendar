@@ -398,6 +398,8 @@ jQuery(document).ready(function($) {
         });
 	}
 
+console.log(wp_events);
+
 	$('#calendar').fullCalendar({
 	   
 	   	//set language dynamic via wordpress?? 

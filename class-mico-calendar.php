@@ -318,6 +318,9 @@ class MICO_Calendar {
 	 */
 	public function populate_events() {
 		$this->all_events = $this->get_events_json();
+		//var_dump(get_the_title());
+		//var_dump($this->all_events);
+
 	}
 
 	/**
@@ -1065,10 +1068,10 @@ class MICO_Calendar {
 				} else {
 					$end_date = get_end_date('Y-m-d H:i');
 				}
-
+				$related = get_post($related_post_id);
 				$events_json[] = array(
 					'id' => get_the_id(),
-					'title' => get_the_title($related_post_id),
+					'title' => $related->post_title,
 					'start' => get_start_date('Y-m-d H:i'),
 					'end' => $end_date,
 					'url' => get_edit_post_link($related_post_id, ''),
@@ -1078,9 +1081,9 @@ class MICO_Calendar {
 			
 		endwhile; endif;
 		
-		//echo the JSON-formatted array to js. 
+		//echo the JSON-formatted array to js.
+		
 		return json_encode($events_json);
-
 	}
 
 	/**
