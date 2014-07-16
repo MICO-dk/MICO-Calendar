@@ -65,7 +65,7 @@ This function echos the daterange as a string, intelligently formatting the stri
 *integer* - the id that specifies the post from which to check the all day value.
 
 
-### get_related_id
+### get_related_id()
 This function returns the id of whatever post the event belongs to. If the related post doesnt exist it falls back to `get_the_id()` of current post.
 ```PHP
 <?php get_related_id($post) ?>
@@ -74,7 +74,7 @@ This function returns the id of whatever post the event belongs to. If the relat
 *integer* - the id that specifies the post from which to check the all day value.
 
 
-### build_timestamp
+### build_timestamp()
 This function returns a full timestamp in the ISO format 'Y-m-d H:i', from broken pieces of date info (date, hour, minute).
 ```PHP
 <?php build_timestamp($date, $hh, $mm) ?>
