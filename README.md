@@ -23,13 +23,13 @@ All functionality is meant to work as an extention to the normal WordPress workf
 This function returns either a boolean value, or - if $chekedit is set to true - returns the word checked, if the current event has all day checked.
 ```PHP
 <?php is_all_day($checkit, $post) ?>
-```
-##### Parameters
-**$checkit** (optional)  
-- boolean. wether or not to output the word 'checked', when all day is checked.
+``
 
-**$post** (optional)   
-- integer. the id that specifies the post from which to check the all day value.
+- **$checkit** (optional)  
+*boolean* - wether or not to output the word 'checked', when all day is checked.
+
+- **$post** (optional)   
+*integer* - the id that specifies the post from which to check the all day value.
 
 
 
