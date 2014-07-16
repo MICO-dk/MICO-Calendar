@@ -1,0 +1,252 @@
+.metabox-eventlist-content {
+
+}
+
+	.eventslist-global-dates {
+
+	}
+
+
+	.eventslist-table {
+	
+	}
+		//zebra stribe the table. note that we have to account for the hidden rows too
+		.eventlist-row:nth-of-type(4n+2),
+		.eventlist-row:nth-of-type(4n+1) {
+			background-color: #f9f9f9;
+		}
+
+		
+		.event-data-row {
+			//.event-actions * { opacity: 0; }
+			//&:hover .event-actions *{ opacity: 1; }
+			background-color: #fff;
+			
+		
+			.dashicons-calendar {
+				margin-right: .5rem;
+			}
+			&._has_transition {
+				transition: background-color 1s ease .2s, opacity .5s;
+
+				
+			}
+			
+			&._is_updated {
+				background-color: #2ea2cc;
+				opacity: .3;
+				
+			}
+			&._is_being_deleted {
+				opacity: .1;
+			}
+
+		}
+			.event-button-delete {
+				cursor: pointer;
+				&:hover {
+					color: #a00a00;
+				}
+			}
+
+			.event-button-edit {
+				cursor: pointer;
+				&:hover {
+					color: #00aa08;
+				}	
+			}
+			
+
+		.event-editing-row {
+			display: none;	
+			h4 {
+				margin: 0;
+			}
+			.new-title {
+				display: none;
+			}
+			.new-event--btn-text {
+				display: none;
+			}
+		}
+
+		.eventlist-edit-table {
+			margin: .5rem 0; //overwrite some wp css.
+			padding: 1rem .5rem;
+			table-layout: fixed;
+		}
+	
+		._is_hidden {
+			display: none;
+		}
+	
+
+		.new-event-container {
+			display: none;
+			.update-title {
+				display: none;
+			}
+			.save-event-btn-text {
+				display: none;
+			}
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .mcal_event_metabox_time_inputs {
+// 	input {
+// 		width: 3rem;
+// 	}
+// 	&._is_hidden {
+// 		display: none;
+// 	}
+// }	
+
+// // .seamless_meta_box {
+// // 	//background: transparent;
+// // 	border: 0 none;
+// // 	box-shadow: none;
+// // 	h3 {
+// // 		display: none;
+// // 	}
+// // 	.handlediv {
+// // 		display: none;
+// // 	}
+// // 	.inside {
+// // 		//padding: 0;
+// // 		border: none;
+// // 	}
+// // }
+
+// .eventslist-content {
+// 	//background-color: #fff;
+// 	//padding-top: 12px; // same as wordpress .inside class
+// 	&:after { //clearfix
+// 		content: '';
+// 		display: block;
+// 		clear: both;
+// 	}
+// 	* {
+// 		box-sizing: border-box;
+// 	}
+// 	h3 {
+// 		float: left;
+// 		margin: 0 !important;
+// 		padding-left: 0 !important;
+// 		border: none;
+// 	}
+// }
+
+// .eventslist-header {
+// 	overflow: hidden;
+// 	h2 {
+// 		display: none;
+// 		float: left;
+// 		line-height: 1;
+// 		margin: 0 !important; //overwrite wordpress styles.
+// 		padding: 0;
+// 	}
+// }
+
+// .eventslist-table-container .widefat {
+// 	overflow: hidden;
+// 	table-layout: fixed;
+// }
+
+// .eventslist-content tbody tr:nth-of-type(4n+2),
+// .eventslist-content tbody tr:nth-of-type(4n+1) {
+// 	background-color: #f9f9f9;
+// }
+
+// .eventslist-table-container tbody tr {
+// 	transition: transform .5s ease, background-color 1s ease, opacity .5s ease;
+
+// }
+
+// .new-event-row {
+// 	background-color: #2ea2cc !important;
+// 	transform: translate3d(0%,100%,0);
+// 	//transform: scale(0);
+// }
+
+// .eventslist-global-dates {
+// 	float: right;
+// 	font-style: italic;
+// }
+
+// .add-new-button-container {
+// 	position: relative;
+// 	float: left;
+// }
+
+// .add-new-button {
+// 	position: relative;
+// 	z-index: 1;
+// }
+
+// .add-new-popup {
+// 	display: none;
+// 	position: absolute;
+// 	z-index: 2;
+// 	bottom: 0;
+// 	left: 100%;
+// 	background-color: #fff;
+// 	width: 26rem;
+// 	border-radius: .5rem;
+// 	padding: 1rem;
+// 	box-shadow: 0 8px 15px 0 rgba(0,0,0,.3);
+// 	transition: transform .4s ease;
+// 	transform-origin: 0 100%;
+// 	transform: scale(0);
+// 	&._is_open {
+// 		transition: transform .4s cubic-bezier(.2,.1,.3,1.3);
+// 		transform: scale(1);
+// 	}
+// 	h2 {
+// 		margin: 0 !important;
+// 	}
+// }
+
+
+// // delete post
+// // 
+// .delete-event-button {
+// 	cursor: pointer;
+// 	&:hover {
+// 		color: #a00a00;
+// 	}
+// }
+
+// .edit-event-button {
+// 	cursor: pointer;
+// 	&:hover {
+// 		color: #00aa08;
+// 	}	
+// }
+
+// .event-row {
+// 	&._is_being_deleted {
+// 		opacity: .2;
+// 	}
+// }
+
+// .editing-row {
+// 	display: none;
+// }

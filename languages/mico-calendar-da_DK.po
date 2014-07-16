@@ -1,0 +1,179 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mico-calendar\n"
+"POT-Creation-Date: 2014-07-16 10:27+0100\n"
+"PO-Revision-Date: 2014-07-16 10:28+0100\n"
+"Last-Translator: Malthe Milthers <malthe@milthers.dk>\n"
+"Language-Team: \n"
+"Language: da_DK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c;_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
+"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../class-mico-calendar.php:389
+msgctxt "post type general name"
+msgid "Events"
+msgstr "Begivenheder"
+
+#: ../class-mico-calendar.php:390
+msgctxt "post type singular name"
+msgid "Event"
+msgstr "Begivenhed"
+
+#: ../class-mico-calendar.php:391
+msgctxt "admin menu"
+msgid "Events"
+msgstr "Begivenheder"
+
+#: ../class-mico-calendar.php:392
+msgctxt "add new on admin bar"
+msgid "Event"
+msgstr "Begivenhed"
+
+#: ../class-mico-calendar.php:393 ../class-mico-calendar.php:871
+msgctxt "event"
+msgid "Add New"
+msgstr "Tilføj Ny"
+
+#: ../class-mico-calendar.php:394 ../class-mico-calendar.php:869
+msgid "Add New Event"
+msgstr "Tilføj Ny Begivenhed"
+
+#: ../class-mico-calendar.php:395
+msgid "New Event"
+msgstr "Ny Begivenhed"
+
+#: ../class-mico-calendar.php:396
+msgid "Edit Event"
+msgstr "Rediger Begivenhed"
+
+#: ../class-mico-calendar.php:397
+msgid "View Event"
+msgstr "Vis Begivenhed"
+
+#: ../class-mico-calendar.php:398
+msgid "All Events"
+msgstr "Alle Begivenheder"
+
+#: ../class-mico-calendar.php:399
+msgid "Search Events"
+msgstr "Søg i Begivenheder"
+
+#: ../class-mico-calendar.php:400
+msgid "Parent Event:"
+msgstr "Forældre Begivenhed"
+
+#: ../class-mico-calendar.php:401
+msgid "No events found."
+msgstr "Ingen begivenheder fundet"
+
+#: ../class-mico-calendar.php:402
+msgid "No events found in trash."
+msgstr "Ingen begivenheder fundet i papirkurven."
+
+#: ../class-mico-calendar.php:412
+msgctxt "URL slug"
+msgid "event"
+msgstr "begivenhed"
+
+#: ../class-mico-calendar.php:444
+msgid "Event info"
+msgstr "Begivenhedsinfo"
+
+#: ../class-mico-calendar.php:558 ../views/calendar-view.php:2
+msgid "Calendar"
+msgstr "Kalender"
+
+#: ../class-mico-calendar.php:694
+msgid "Mico Calendar Settings"
+msgstr "Mico Kalender instillinger"
+
+#: ../class-mico-calendar.php:696
+msgid "Mico Calendar"
+msgstr "Mico Kalender"
+
+#: ../class-mico-calendar.php:727
+msgid "Settings"
+msgstr "Instillinger"
+
+#: ../class-mico-calendar.php:778
+msgid "Show events admin menu"
+msgstr "Vis begivenheder i administrationsmenuen"
+
+#: ../class-mico-calendar.php:835
+msgctxt "admin page title"
+msgid "Calendar"
+msgstr "Kalender"
+
+#: ../class-mico-calendar.php:837
+msgctxt "admin menu title"
+msgid "Calendar"
+msgstr "Kalender"
+
+#: ../views/field-show-events-in-admin.php:19
+msgid ""
+"This will add the \"events\" post type as a submenu to the calendar. This "
+"can be useful when debugging."
+msgstr ""
+"Det her vil tilføje begivenheder som en undermenu til kalenderen. Det kan "
+"være praktisk når man skal finde fejl."
+
+#: ../views/meta-box-eventform-buttons.php:3
+#: ../views/meta-box-eventslist.php:87
+msgid "Add event"
+msgstr "Tilføj begivenhed"
+
+#: ../views/meta-box-eventform-buttons.php:4
+#: ../views/meta-box-eventlist-row.php:15
+msgid "Update event"
+msgstr "Opdater begivenhed"
+
+#: ../views/meta-box-eventform-buttons.php:6
+msgid "Cancel"
+msgstr "Annullér"
+
+#: ../views/meta-box-eventlist-eventform.php:5
+msgctxt "title of post"
+msgid "Attached to"
+msgstr "Tilknyttet"
+
+#: ../views/meta-box-eventlist-eventform.php:16
+msgid "All day"
+msgstr "Hele dagen"
+
+#: ../views/meta-box-eventlist-eventform.php:36
+msgctxt "date"
+msgid "From"
+msgstr "Fra"
+
+#: ../views/meta-box-eventlist-eventform.php:49
+msgctxt "date"
+msgid "To"
+msgstr "Til"
+
+#: ../views/meta-box-eventslist.php:47
+msgid "Daterange"
+msgstr "Periode"
+
+#: ../views/meta-box-eventslist.php:55
+msgid "Date"
+msgstr "Dato"
+
+#: ../views/meta-box-eventslist.php:70
+msgid "No events yet"
+msgstr "Endnu ingen begivenheder"
+
+#: ../views/meta-box-eventslist.php:89
+msgid "New event"
+msgstr "Ny begivenhed"
+
+#~ msgid "test me"
+#~ msgstr "test mig"
