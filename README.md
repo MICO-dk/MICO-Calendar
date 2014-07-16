@@ -3,9 +3,7 @@
 NOTE: this plugin is in 1.0.0 because its now beeing used in production for MICO's Clients. However - lots of features and bugs are still being worked on. Consider yourself warned :) !
 
 The Mico Calendar plugin for WordPress is ment for developers who would like to include 
-iCal-like functionality to the admin, while adding calendar functionality to any post type og choice
-
-This plugin was made at MICO as a solution for theatre clients. 
+iCal-like functionality to the admin, while adding calendar functionality to any post type of choice
 
 
 ##Features
