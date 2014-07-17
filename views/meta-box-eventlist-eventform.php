@@ -29,8 +29,8 @@
 			<td>
                 <input type="text" class="js-datepicker" name="mcal_start_date" value="<?php echo get_post_type() == 'event' ?  get_start_date('d/m/Y') : ''; ?>" placeholder="02/04/2015" size="10" maxlength="10" autocomplete="off">
 				<span class="mcal_event_metabox_time_inputs  <?php if(is_all_day()) {echo '_is_hidden';}; ?>">
-					@ <input type="number" min="1" max="24" name="mcal_start_hh" value="<?php echo get_start_date('H'); ?>" placeholder="19" autocomplete="off"> 
-					: <input type="number" min="1" max="59" name="mcal_start_mm"value="<?php echo get_start_date('i'); ?>" placeholder="00" autocomplete="off">
+					@ <input type="number" name="mcal_start_hh" value="<?php echo get_start_date('H'); ?>" placeholder="19" autocomplete="off"> 
+					: <input type="number" name="mcal_start_mm" value="<?php echo get_start_date('i'); ?>" placeholder="00" autocomplete="off">
 				</span>
 			</td>
 		</tr>
@@ -42,8 +42,8 @@
 			<td>
                 <input type="text" class="js-datepicker" name="mcal_end_date" value="<?php echo get_post_type() == 'event' ?  get_end_date('d/m/Y') : ''; ?>" placeholder="02/04/2015" size="10" maxlength="10" autocomplete="off">
 				<span class="mcal_event_metabox_time_inputs <?php if(is_all_day()) {echo '_is_hidden';}; ?>">
-					@ <input type="number" min="1" max="24" value="<?php echo get_end_date('H');  ?>" name="mcal_end_hh" placeholder="19" autocomplete="off">
-					: <input type="number" min="1" max="59" value="<?php echo get_end_date('i');  ?>" name="mcal_end_mm" placeholder="00" autocomplete="off">
+					@ <input type="number" name="mcal_end_hh" value="<?php echo get_end_date('H');  ?>" placeholder="19" autocomplete="off">
+					: <input type="number" name="mcal_end_mm" value="<?php echo get_end_date('i');  ?>" placeholder="00" autocomplete="off">
 				</span>
 			</td>
 		</tr>
