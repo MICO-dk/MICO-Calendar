@@ -96,7 +96,7 @@ class MICO_Calendar {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_fullcalendar_scripts' ) );
 
 		// Event post type: Register post type (event)
-		add_action( 'init', array( $this, 'register_post_type' ) );
+		add_action( 'init', array( $this, 'register_post_type' ), 10 );
 		
 		// Add a custom "view event" link, since this is not displayed by default, when post type is a submenu item. 
 		add_action( 'admin_bar_menu', array($this,'add_view_link_to_toolbar'), 999 );
@@ -440,7 +440,7 @@ class MICO_Calendar {
 
 			//get show_in_admin option
 			$show_in_admin = get_option($this->plugin_db_prefix . '_show_events_in_admin') == 1 ? 'mico-calendar' : false;
-
+			$has_archive = get_option($this->plugin_db_prefix . '_disable_event_archive') == 1 ? false : true;
 			$labels = array(
 				'name'               => _x( 'Events', 'post type general name', $this->plugin_slug ),
 				'singular_name'      => _x( 'Event', 'post type singular name', $this->plugin_slug ),
@@ -467,7 +467,7 @@ class MICO_Calendar {
 				'query_var'          => true,
 				'rewrite'            => array( 'slug' => _x( 'calendar', 'URL slug', $this->plugin_slug ) ),
 				'capability_type'    => 'post',
-				'has_archive'        => true,
+				'has_archive'        => $has_archive,
 				'hierarchical'       => false,
 				'menu_position'      => null,
 				'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions'),
@@ -892,6 +892,22 @@ class MICO_Calendar {
 		    array('')
 		);
 
+		// Disable archive page for event_entries
+		add_settings_field( 
+		    // ID used to identify the field throughout the plugin
+			$this->plugin_db_prefix . '_disable_event_archive',
+		    // The label to the left of the option interface element
+		    __('Disable the event_entry archive page', 'mico-calendar'),
+		    // The name of the function responsible for rendering the option interface
+		    array($this, 'display_disable_event_archive'),
+		    // The page on which this option will be displayed
+		    $this->plugin_slug . '-settings',
+		    // The name of the section to which this field belongs
+		    $this->plugin_slug . '-settings',
+		    // The array of arguments to pass to the callback. In this case, just a description.
+		    array('')
+		);
+
 		// show events field
 		add_settings_field( 
 		    // ID used to identify the field throughout the plugin
@@ -926,6 +942,7 @@ class MICO_Calendar {
 		    array('')
 		);
 
+
 		// Finally, we register the fields with WordPress
 		register_setting(
 		    //group name. security. Must match the settingsfield() on form page
@@ -938,6 +955,12 @@ class MICO_Calendar {
 		    $this->plugin_db_prefix . '_mico_calendar',
 		    //name of field
 		    $this->plugin_db_prefix . '_show_events_in_admin'
+		);
+		register_setting(
+		    //group name. security. Must match the settingsfield() on form page
+		    $this->plugin_db_prefix . '_mico_calendar',
+		    //name of field
+		    $this->plugin_db_prefix . '_disable_event_archive'
 		);
 		register_setting(
 		    //group name. security. Must match the settingsfield() on form page
@@ -972,6 +995,15 @@ class MICO_Calendar {
 	 */
 	public function display_show_events_in_admin_field($args) {
 		include_once( 'views/field-show-events-in-admin.php' );
+	}
+	/**
+	 * Render the show_events_in_admin field
+	 *
+	 * @since    1.0.0
+	 * @param    $args 		Optional arguments passed by the add_settings_field function.
+	 */
+	public function display_disable_event_archive($args) {
+		include_once( 'views/field-disable-archive-page.php' );
 	}
 
 	/**
