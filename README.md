@@ -7,10 +7,10 @@ iCal-like functionality to the admin, while adding calendar functionality to any
 
 
 ##Features
-* A dedicated post type for all events, easy to integrate with any other post types.
+* A dedicated post type for all the dates called 'event' (we may change that to date later, but for now we keep backwards compatibility) thats easy to integrate with any other post types.
+* An optional post type for all event_entries, that you can add dates (events) to.
 * General calendar functionality: "all day", "start date/time", "end date/time".
 * iCal like interface for viewing events in a calendar window, with drag/drop and resize functionality.
-
 
 
 ## Template tags
