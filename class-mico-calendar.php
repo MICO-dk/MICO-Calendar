@@ -487,21 +487,24 @@ class MICO_Calendar {
 	 */
 	public function add_view_link_to_toolbar( $wp_admin_bar ){
 		
-		$screen = get_current_screen();
+		if( is_admin() ) {
 
-		if( $screen->post_type == 'event_entry' && $screen->base == 'post') {
-		
-			$post_type_object = get_post_type_object( 'event_entry' );
+			$screen = get_current_screen();
 
-			$args = array(
-				'id' => 'view_my_page',
-				'title' => $post_type_object->labels->view_item,
-				'parent' => false,
-				'href' => get_the_permalink(),
+			if( $screen->post_type == 'event_entry' && $screen->base == 'post') {
+			
+				$post_type_object = get_post_type_object( 'event_entry' );
 
-		 		);
-			$wp_admin_bar->add_node( $args );
+				$args = array(
+					'id' => 'view_my_page',
+					'title' => $post_type_object->labels->view_item,
+					'parent' => false,
+					'href' => get_the_permalink(),
 
+			 		);
+				$wp_admin_bar->add_node( $args );
+
+			}
 		}
 	}
 
