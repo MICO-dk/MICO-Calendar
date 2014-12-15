@@ -997,17 +997,21 @@ class MICO_Calendar {
 	    	//$menu_slug
 	    	$this->plugin_slug,
 	    	//$function
-	    	'display_plugin_calendar_view',
+	    	array($this, 'display_plugin_calendar_view'),
 	    	//$icon_url
 	    	'dashicons-calendar',
 	    	//position
 	    	6 
     	);
-    	function display_plugin_calendar_view() {
-			include_once( 'views/calendar-view.php' );
-		}
-	}
 
+	}
+	/**
+	 * Display calendar view
+	 * @return [type] [description]
+	 */
+	function display_plugin_calendar_view() {
+		include_once( 'views/calendar-view.php' );
+	}
 
 	/**
 	 * Add a fake "new event" menu under our plugin menu
