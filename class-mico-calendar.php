@@ -488,7 +488,6 @@ class MICO_Calendar {
 	public function add_view_link_to_toolbar( $wp_admin_bar ){
 		
 		if( is_admin() ) {
-
 			$screen = get_current_screen();
 
 			if( $screen->post_type == 'event_entry' && $screen->base == 'post') {
@@ -496,7 +495,7 @@ class MICO_Calendar {
 				$post_type_object = get_post_type_object( 'event_entry' );
 
 				$args = array(
-					'id' => 'view_my_page',
+					'id' => 'view',
 					'title' => $post_type_object->labels->view_item,
 					'parent' => false,
 					'href' => get_the_permalink(),
@@ -505,6 +504,19 @@ class MICO_Calendar {
 				$wp_admin_bar->add_node( $args );
 
 			}
+		} elseif(is_single() && get_post_type() == 'event_entry') {
+
+			$post_type_object = get_post_type_object( 'event_entry' );
+
+				$args = array(
+					'id' => 'edit',
+					'title' => $post_type_object->labels->edit_item,
+					'parent' => false,
+					'href' => get_edit_post_link(),
+
+			 		);
+				$wp_admin_bar->add_node( $args );
+
 		}
 	}
 
