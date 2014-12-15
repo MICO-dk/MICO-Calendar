@@ -11,7 +11,7 @@
  * Plugin Name: 	MICO Calendar
  * Plugin URI:		@TODO
  * Description: 	Creates a calendarview, and allows for all posttypes to be included in the calendar, by adding an event-metabox to their edit page.
- * Version: 		1.0.0
+ * Version: 		1.1.0
  * Author: 			Malthe Milthers
  * Author URI: 		http://www.malthemilthers.com
  * Text Domain: 	mico-calendar
@@ -70,7 +70,7 @@ function is_all_day($checkit = false, $post = NULL) {
 	}
 
 	// load the data from database
-	$all_day = get_post_meta( get_the_ID(), 'mcal_all_day', true );
+	$all_day = get_post_meta( $post->ID, 'mcal_all_day', true );
 	
 	//echo the string "checked" if checkit is set to true.
 	if($all_day == 1 && $checkit) {
@@ -249,6 +249,37 @@ function build_timestamp($date, $hh, $mm) {
 	return $ts;
 }
 
+
+/**
+ * get All events for a related post (ie. event_entry)
+ *
+ * @since  1.1.0
+ */
+
+function get_event_query($post = NULL) {
+	$post = get_post( $post );
+	//check if the post exists
+	if($post === NULL) {
+		return;
+	}
+	$args = array(
+		'post_type'   => 'event',
+		'posts_per_page'         => -1,
+		'orderby' => 'meta_value',
+	    'meta_key' => ' mcal_start',
+	    'order' => 'ASC',
+	    'meta_query' => array(
+	            array(
+	                'key' => 'mcal_related_post_id',
+	                'value' => $post->ID,
+	                'compare' => '=='
+	            ),
+	        ),
+	);
+		
+	$query = new WP_Query( $args );
+	return $query;
+}
 
 
 
