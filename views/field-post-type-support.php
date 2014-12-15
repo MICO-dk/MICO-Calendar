@@ -15,6 +15,7 @@ $post_types = get_post_types(array('public' => true), 'objects');
 //remove attachments and our event post type from the array
 unset($post_types['attachment']);
 unset($post_types['event']);
+unset($post_types['event_entry']);
 
 //get the current option value from db. 
 $current_options = get_option($this->plugin_db_prefix . '_post_type_support');

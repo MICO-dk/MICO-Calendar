@@ -9,6 +9,9 @@
  * @link 		MICO, http://www.mico.dk
  */
 
+
+
+
 /**
  * The main class
  */
@@ -94,6 +97,10 @@ class MICO_Calendar {
 
 		// Event post type: Register post type (event)
 		add_action( 'init', array( $this, 'register_post_type' ) );
+		
+		// Add a custom "view event" link, since this is not displayed by default, when post type is a submenu item. 
+		add_action( 'admin_bar_menu', array($this,'add_view_link_to_toolbar'), 999 );
+
 		// Event post type: hide date filter on the post type listing
 			//add_action('load-edit.php', array($this, 'hide_date_filter') );
 		// Event post type: Add metabox to the post type (event)
@@ -388,43 +395,116 @@ class MICO_Calendar {
 	 */
 	public function register_post_type() {
 
-		//get show_in_admin option
-		$show_in_admin = get_option($this->plugin_db_prefix . '_show_events_in_admin') == 1 ? 'mico-calendar' : false;
+		if ( !post_type_exists( 'event' ) ) :
+	
+			//get show_in_admin option
+			$show_dates_in_admin = get_option($this->plugin_db_prefix . '_show_dates_in_admin') == 1 ? 'mico-calendar' : false;
 
-		$labels = array(
-			'name'               => _x( 'Events', 'post type general name', $this->plugin_slug ),
-			'singular_name'      => _x( 'Event', 'post type singular name', $this->plugin_slug ),
-			'menu_name'          => _x( 'Events', 'admin menu', $this->plugin_slug ),
-			'name_admin_bar'     => _x( 'Event', 'add new on admin bar', $this->plugin_slug ),
-			'add_new'            => _x( 'Add New', 'event', $this->plugin_slug ),
-			'add_new_item'       => __( 'Add New Event', $this->plugin_slug ),
-			'new_item'           => __( 'New Event', $this->plugin_slug ),
-			'edit_item'          => __( 'Edit Event', $this->plugin_slug ),
-			'view_item'          => __( 'View Event', $this->plugin_slug ),
-			'all_items'          => __( 'All Events', $this->plugin_slug ),
-			'search_items'       => __( 'Search Events', $this->plugin_slug ),
-			'parent_item_colon'  => __( 'Parent Event:', $this->plugin_slug ),
-			'not_found'          => __( 'No events found.', $this->plugin_slug ),
-			'not_found_in_trash' => __( 'No events found in trash.', $this->plugin_slug )		
-		);
-		$args = array(
-			'labels'             => $labels,
-			'public'             => false,
-			'publicly_queryable' => false,
-			'exclude_from_search'=> true,
-			'show_ui'            => true,
-			'show_in_menu'       => $show_in_admin,
-			'query_var'          => false,
-			'rewrite'            => array( 'slug' => _x( 'event', 'URL slug', $this->plugin_slug ) ),
-			'capability_type'    => 'post',
-			'has_archive'        => false,
-			'hierarchical'       => false,
-			'menu_position'      => null,
-			'supports'           => array('title'),
-			//'menu_icon'          => 'dashicons-calendar'
-		);
-		register_post_type( 'event', $args );
+			$labels = array(
+				'name'               => _x( 'Dates', 'post type general name', $this->plugin_slug ),
+				'singular_name'      => _x( 'Date', 'post type singular name', $this->plugin_slug ),
+				'menu_name'          => _x( 'Dates', 'admin menu', $this->plugin_slug ),
+				'name_admin_bar'     => _x( 'Dates', 'add new on admin bar', $this->plugin_slug ),
+				'add_new'            => _x( 'Add New', 'date', $this->plugin_slug ),
+				'add_new_item'       => __( 'Add New Date', $this->plugin_slug ),
+				'new_item'           => __( 'New Date', $this->plugin_slug ),
+				'edit_item'          => __( 'Edit Date', $this->plugin_slug ),
+				'view_item'          => __( 'View Date', $this->plugin_slug ),
+				'all_items'          => __( 'All Dates', $this->plugin_slug ),
+				'search_items'       => __( 'Search Dates', $this->plugin_slug ),
+				'parent_item_colon'  => __( 'Parent Date:', $this->plugin_slug ),
+				'not_found'          => __( 'No dates found.', $this->plugin_slug ),
+				'not_found_in_trash' => __( 'No dates found in trash.', $this->plugin_slug )		
+			);
+			$args = array(
+				'labels'             => $labels,
+				'public'             => false,
+				'publicly_queryable' => false,
+				'exclude_from_search'=> true,
+				'show_ui'            => true,
+				'show_in_menu'       => $show_dates_in_admin,
+				'query_var'          => false,
+				'rewrite'            => array( 'slug' => _x( 'date', 'URL slug', $this->plugin_slug ) ),
+				'capability_type'    => 'post',
+				'has_archive'        => false,
+				'hierarchical'       => false,
+				'menu_position'      => null,
+				'supports'           => array('title'),
+				//'menu_icon'          => 'dashicons-calendar'
+			);
+			register_post_type( 'event', $args );
+
+		endif;
+
+		if ( !post_type_exists( 'event_entry' ) ) :
+
+			//get show_in_admin option
+			$show_in_admin = get_option($this->plugin_db_prefix . '_show_events_in_admin') == 1 ? 'mico-calendar' : false;
+
+			$labels = array(
+				'name'               => _x( 'Events', 'post type general name', $this->plugin_slug ),
+				'singular_name'      => _x( 'Event', 'post type singular name', $this->plugin_slug ),
+				'menu_name'          => _x( 'Events', 'admin menu', $this->plugin_slug ),
+				'name_admin_bar'     => _x( 'Event', 'add new on admin bar', $this->plugin_slug ),
+				'add_new'            => _x( 'Add New', 'event', $this->plugin_slug ),
+				'add_new_item'       => __( 'Add New Event', $this->plugin_slug ),
+				'new_item'           => __( 'New Event', $this->plugin_slug ),
+				'edit_item'          => __( 'Edit Event', $this->plugin_slug ),
+				'view_item'          => __( 'View Event', $this->plugin_slug ),
+				'all_items'          => __( 'All Events', $this->plugin_slug ),
+				'search_items'       => __( 'Search Events', $this->plugin_slug ),
+				'parent_item_colon'  => __( 'Parent Event:', $this->plugin_slug ),
+				'not_found'          => __( 'No events found.', $this->plugin_slug ),
+				'not_found_in_trash' => __( 'No events found in trash.', $this->plugin_slug )		
+			);
+			$args = array(
+				'labels'             => $labels,
+				'public'             => true,
+				'publicly_queryable' => true,
+				'exclude_from_search'=> false,
+				'show_ui'            => true,
+				'show_in_menu'       => $show_in_admin,
+				'query_var'          => true,
+				'rewrite'            => array( 'slug' => _x( 'calendar', 'URL slug', $this->plugin_slug ) ),
+				'capability_type'    => 'post',
+				'has_archive'        => true,
+				'hierarchical'       => false,
+				'menu_position'      => null,
+				'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions'),
+				//'menu_icon'          => 'dashicons-calendar'
+			);
+			register_post_type( 'event_entry', $args );
+
+		endif;
+
 	}
+
+	/**
+	 * Manually add a 'view event' link to the toolbar
+	 *
+	 * Wordpress doesnt add this when post type is placed as a submenu for some reason.
+	 * @param [type] $wp_admin_bar [description]
+	 */
+	public function add_view_link_to_toolbar( $wp_admin_bar ){
+		
+		$screen = get_current_screen();
+
+		if( $screen->post_type == 'event_entry' && $screen->base == 'post') {
+		
+			$post_type_object = get_post_type_object( 'event_entry' );
+
+			$args = array(
+				'id' => 'view_my_page',
+				'title' => $post_type_object->labels->view_item,
+				'parent' => false,
+				'href' => get_the_permalink(),
+
+		 		);
+			$wp_admin_bar->add_node( $args );
+
+		}
+	}
+
 
 	/**
 	 * 
@@ -555,6 +635,12 @@ class MICO_Calendar {
 	public function add_eventslist_meta_box() {
 		
 		$post_types = get_option($this->plugin_db_prefix . '_post_type_support');
+		
+		if(is_array($post_types)) {
+			$post_types[] = 'event_entry';
+		} else {
+			$post_types = array('event_entry');
+		}
 		if($post_types) :
 			foreach ( $post_types as $post_type ) {
 				add_meta_box(
@@ -775,7 +861,7 @@ class MICO_Calendar {
 		    array('')
 		);
 		 
-		 // show events field
+		// show events field
 		add_settings_field( 
 		    // ID used to identify the field throughout the plugin
 			$this->plugin_db_prefix . '_show_events_in_admin',
@@ -790,6 +876,24 @@ class MICO_Calendar {
 		    // The array of arguments to pass to the callback. In this case, just a description.
 		    array('')
 		);
+
+		// show events field
+		add_settings_field( 
+		    // ID used to identify the field throughout the plugin
+			$this->plugin_db_prefix . '_show_dates_in_admin',
+		    // The label to the left of the option interface element
+		    __('Show dates admin menu', 'mico-calendar'),
+		    // The name of the function responsible for rendering the option interface
+		    array($this, 'display_show_dates_in_admin_field'),
+		    // The page on which this option will be displayed
+		    $this->plugin_slug . '-settings',
+		    // The name of the section to which this field belongs
+		    $this->plugin_slug . '-settings',
+		    // The array of arguments to pass to the callback. In this case, just a description.
+		    array('')
+		);
+
+
 
 		// Force year in get_date_range()
 		add_settings_field( 
@@ -824,6 +928,12 @@ class MICO_Calendar {
 		    //group name. security. Must match the settingsfield() on form page
 		    $this->plugin_db_prefix . '_mico_calendar',
 		    //name of field
+		    $this->plugin_db_prefix . '_show_dates_in_admin'
+		);
+		register_setting(
+		    //group name. security. Must match the settingsfield() on form page
+		    $this->plugin_db_prefix . '_mico_calendar',
+		    //name of field
 		    $this->plugin_db_prefix . '_force_year'
 		);
 
@@ -847,6 +957,16 @@ class MICO_Calendar {
 	 */
 	public function display_show_events_in_admin_field($args) {
 		include_once( 'views/field-show-events-in-admin.php' );
+	}
+
+	/**
+	 * Render the show_dates_in_admin field
+	 *
+	 * @since    1.0.0
+	 * @param    $args 		Optional arguments passed by the add_settings_field function.
+	 */
+	public function display_show_dates_in_admin_field($args) {
+		include_once( 'views/field-show-dates-in-admin.php' );
 	}
 
 	/**

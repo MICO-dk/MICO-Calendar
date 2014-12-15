@@ -16,5 +16,5 @@ $current = get_option($this->plugin_db_prefix . '_show_events_in_admin');
  ?>
 <p>
 	<input type="checkbox" name="<?php echo $this->plugin_db_prefix . '_show_events_in_admin' ?>" value="1" <?php checked( 1, $current, true ); ?>/>
-	<?php _e('This will add the "events" post type as a submenu to the calendar. This can be useful when debugging.', 'mico-calendar') ?>
+	<?php _e('This will add the "event_entry" post type as a submenu to the calendar. This is useful if you need a post type to add the events to.', 'mico-calendar') ?>
 </p>

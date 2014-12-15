@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: mico-calendar\n"
-"POT-Creation-Date: 2014-07-16 15:38+0100\n"
-"PO-Revision-Date: 2014-07-16 15:39+0100\n"
+"POT-Creation-Date: 2014-12-15 11:10+0100\n"
+"PO-Revision-Date: 2014-12-15 11:14+0100\n"
 "Last-Translator: Malthe Milthers <malthe@milthers.dk>\n"
 "Language-Team: \n"
 "Language: da_DK\n"
@@ -18,106 +18,176 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-#: ../class-mico-calendar.php:389
+#: ../class-mico-calendar.php:397
+msgctxt "post type general name"
+msgid "Dates"
+msgstr "Datoer"
+
+#: ../class-mico-calendar.php:398
+msgctxt "post type singular name"
+msgid "Date"
+msgstr "Dato"
+
+#: ../class-mico-calendar.php:399
+msgctxt "admin menu"
+msgid "Dates"
+msgstr "Datoer"
+
+#: ../class-mico-calendar.php:400
+msgctxt "add new on admin bar"
+msgid "Dates"
+msgstr "Datoer"
+
+#: ../class-mico-calendar.php:401
+msgctxt "date"
+msgid "Add New"
+msgstr "Tilføj Ny"
+
+#: ../class-mico-calendar.php:402
+msgid "Add New Date"
+msgstr "Tilføj Ny Dato"
+
+#: ../class-mico-calendar.php:403
+msgid "New Date"
+msgstr "Ny Dato"
+
+#: ../class-mico-calendar.php:404
+msgid "Edit Date"
+msgstr "Rediger Dato"
+
+#: ../class-mico-calendar.php:405
+msgid "View Date"
+msgstr "Vis Dato"
+
+#: ../class-mico-calendar.php:406
+msgid "All Dates"
+msgstr "Alle Datoer"
+
+#: ../class-mico-calendar.php:407
+msgid "Search Dates"
+msgstr "Søg i Datoer"
+
+#: ../class-mico-calendar.php:408
+msgid "Parent Date:"
+msgstr "Forældre Dato"
+
+#: ../class-mico-calendar.php:409
+msgid "No dates found."
+msgstr "Ingen datoer fundet"
+
+#: ../class-mico-calendar.php:410
+msgid "No dates found in trash."
+msgstr "Ingen datoer fundet i papirkurven."
+
+#: ../class-mico-calendar.php:420
+msgctxt "URL slug"
+msgid "date"
+msgstr "dato"
+
+#: ../class-mico-calendar.php:438
 msgctxt "post type general name"
 msgid "Events"
 msgstr "Begivenheder"
 
-#: ../class-mico-calendar.php:390
+#: ../class-mico-calendar.php:439
 msgctxt "post type singular name"
 msgid "Event"
 msgstr "Begivenhed"
 
-#: ../class-mico-calendar.php:391
+#: ../class-mico-calendar.php:440
 msgctxt "admin menu"
 msgid "Events"
 msgstr "Begivenheder"
 
-#: ../class-mico-calendar.php:392
+#: ../class-mico-calendar.php:441
 msgctxt "add new on admin bar"
 msgid "Event"
 msgstr "Begivenhed"
 
-#: ../class-mico-calendar.php:393 ../class-mico-calendar.php:902
+#: ../class-mico-calendar.php:442 ../class-mico-calendar.php:994
 msgctxt "event"
 msgid "Add New"
 msgstr "Tilføj Ny"
 
-#: ../class-mico-calendar.php:394 ../class-mico-calendar.php:900
+#: ../class-mico-calendar.php:443 ../class-mico-calendar.php:992
 msgid "Add New Event"
 msgstr "Tilføj Ny Begivenhed"
 
-#: ../class-mico-calendar.php:395
+#: ../class-mico-calendar.php:444
 msgid "New Event"
 msgstr "Ny Begivenhed"
 
-#: ../class-mico-calendar.php:396
+#: ../class-mico-calendar.php:445
 msgid "Edit Event"
 msgstr "Rediger Begivenhed"
 
-#: ../class-mico-calendar.php:397
+#: ../class-mico-calendar.php:446
 msgid "View Event"
 msgstr "Vis Begivenhed"
 
-#: ../class-mico-calendar.php:398
+#: ../class-mico-calendar.php:447
 msgid "All Events"
 msgstr "Alle Begivenheder"
 
-#: ../class-mico-calendar.php:399
+#: ../class-mico-calendar.php:448
 msgid "Search Events"
 msgstr "Søg i Begivenheder"
 
-#: ../class-mico-calendar.php:400
+#: ../class-mico-calendar.php:449
 msgid "Parent Event:"
 msgstr "Forældre Begivenhed"
 
-#: ../class-mico-calendar.php:401
+#: ../class-mico-calendar.php:450
 msgid "No events found."
 msgstr "Ingen begivenheder fundet"
 
-#: ../class-mico-calendar.php:402
+#: ../class-mico-calendar.php:451
 msgid "No events found in trash."
 msgstr "Ingen begivenheder fundet i papirkurven."
 
-#: ../class-mico-calendar.php:412
+#: ../class-mico-calendar.php:461
 msgctxt "URL slug"
-msgid "event"
-msgstr "begivenhed"
+msgid "calendar"
+msgstr "kalender"
 
-#: ../class-mico-calendar.php:444
+#: ../class-mico-calendar.php:496
 msgid "Event info"
 msgstr "Begivenhedsinfo"
 
-#: ../class-mico-calendar.php:558 ../views/calendar-view.php:2
+#: ../class-mico-calendar.php:616 ../views/calendar-view.php:2
 msgid "Calendar"
 msgstr "Kalender"
 
-#: ../class-mico-calendar.php:695
+#: ../class-mico-calendar.php:753
 msgid "Mico Calendar Settings"
 msgstr "Mico Kalender instillinger"
 
-#: ../class-mico-calendar.php:697
+#: ../class-mico-calendar.php:755
 msgid "Mico Calendar"
 msgstr "Mico Kalender"
 
-#: ../class-mico-calendar.php:728
+#: ../class-mico-calendar.php:786
 msgid "Settings"
 msgstr "Instillinger"
 
-#: ../class-mico-calendar.php:777
+#: ../class-mico-calendar.php:835
 msgid "Show events admin menu"
 msgstr "Vis begivenheder i administrationsmenuen"
 
-#: ../class-mico-calendar.php:793
+#: ../class-mico-calendar.php:851
+msgid "Show dates admin menu"
+msgstr "Vis datoer i administrationsmenuen"
+
+#: ../class-mico-calendar.php:869
 msgid "Force year in date range"
 msgstr "Vis altid årstal"
 
-#: ../class-mico-calendar.php:866
+#: ../class-mico-calendar.php:958
 msgctxt "admin page title"
 msgid "Calendar"
 msgstr "Kalender"
 
-#: ../class-mico-calendar.php:868
+#: ../class-mico-calendar.php:960
 msgctxt "admin menu title"
 msgid "Calendar"
 msgstr "Kalender"
@@ -129,13 +199,22 @@ msgstr ""
 "Dette vil tvinge perioden til altid at inkludere årstal for både startdato "
 "og slutdato"
 
+#: ../views/field-show-dates-in-admin.php:19
+msgid ""
+"This will add the dates (events post type) as a submenu to the calendar. "
+"This can be useful when debugging."
+msgstr ""
+"Det her vil tilføje datoer (events post type) som en undermenu til "
+"kalenderen. Det kan være praktisk når man skal finde fejl."
+
 #: ../views/field-show-events-in-admin.php:19
 msgid ""
-"This will add the \"events\" post type as a submenu to the calendar. This "
-"can be useful when debugging."
+"This will add the \"event_entry\" post type as a submenu to the calendar. "
+"This is useful if you need a most type to add the events to."
 msgstr ""
-"Det her vil tilføje begivenheder som en undermenu til kalenderen. Det kan "
-"være praktisk når man skal finde fejl."
+"Det her vil tilføje begivenheder (event_entry) som en undermenu til "
+"kalenderen. Den kan bruges som post type for kalenderen, som man kan tilføje "
+"datoer til."
 
 #: ../views/meta-box-eventform-buttons.php:3
 msgid "Save event"
@@ -159,12 +238,12 @@ msgstr "Tilknyttet"
 msgid "All day"
 msgstr "Hele dagen"
 
-#: ../views/meta-box-eventlist-eventform.php:36
+#: ../views/meta-box-eventlist-eventform.php:27
 msgctxt "date"
 msgid "From"
 msgstr "Fra"
 
-#: ../views/meta-box-eventlist-eventform.php:49
+#: ../views/meta-box-eventlist-eventform.php:40
 msgctxt "date"
 msgid "To"
 msgstr "Til"
@@ -188,6 +267,10 @@ msgstr "Tilføj begivenhed"
 #: ../views/meta-box-eventslist.php:89
 msgid "New event"
 msgstr "Ny begivenhed"
+
+#~ msgctxt "URL slug"
+#~ msgid "event"
+#~ msgstr "begivenhed"
 
 #~ msgid "test me"
 #~ msgstr "test mig"
