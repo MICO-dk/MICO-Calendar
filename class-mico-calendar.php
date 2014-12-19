@@ -359,7 +359,7 @@ class MICO_Calendar {
 		// Otherwise there will be a conflic with the media library as of wp 4.1
 		$screen = get_current_screen();
 		if($screen->base == 'post') {
-			wp_enqueue_style( 'jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css' );
+			wp_enqueue_style( 'jquery-ui', plugins_url( 'assets/jquery-ui/jquery-ui-datepicker.css', __FILE__ ), array(), self::VERSION );
 		}
 	}
 
