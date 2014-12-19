@@ -471,6 +471,7 @@ class MICO_Calendar {
 				'exclude_from_search'=> false,
 				'show_ui'            => true,
 				'show_in_menu'       => $show_in_admin,
+				'show_in_nav_menus'  => false,
 				'query_var'          => true,
 				'rewrite'            => array( 'slug' => _x( 'calendar', 'URL slug', $this->plugin_slug ) ),
 				'capability_type'    => 'post',
