@@ -353,7 +353,14 @@ class MICO_Calendar {
 	 */
 	public function enqueue_styles() {
 		wp_enqueue_style( $this->plugin_slug . '-plugin-styles', plugins_url( 'assets/css/mico-calendar.css', __FILE__ ), array(), self::VERSION );
-		wp_enqueue_style( 'jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css' );
+		
+
+		// Only add the jquery UI to post screens. 
+		// Otherwise there will be a conflic with the media library as of wp 4.1
+		$screen = get_current_screen();
+		if($screen->base == 'post') {
+			wp_enqueue_style( 'jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css' );
+		}
 	}
 
 	/**
