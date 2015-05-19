@@ -757,6 +757,7 @@ class MICO_Calendar {
 			'meta_key'	  => 'mcal_start',
 			'orderby' 	  => 'meta_value',
 			'order' 	  => 'asc',
+			'posts_per_page' => -1,
 			'meta_query'  => array(
 								array(
 									'key' => 'mcal_related_post_id',
