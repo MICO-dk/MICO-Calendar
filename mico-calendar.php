@@ -178,6 +178,8 @@ function the_date_range($post = NULL) {
 	$start_date_year = get_start_date('Y', $post);
 	$end_date_year = get_end_date('Y', $post);
 
+	$start_date_month = get_start_date('m', $post);
+	$end_date_month = get_end_date('m', $post);
 
 	// If the events start and end date are the same, or if the end date is empty
 	if ($start_date == $end_date or strlen($end_date) < 4 ) {
@@ -189,6 +191,9 @@ function the_date_range($post = NULL) {
 	if (get_option('mcal_force_year') != 1 && $start_date_year == $end_date_year) {
 		// remove the year from the start date
 		$start_format = str_replace(array(', Y', 'y', 'o', 'Y'), array('', '', '', ''), get_option( 'date_format' ) ) ;
+		if($start_date_month == $end_date_month) {
+			$start_format = str_replace(array(', m', 'M', 'f', 'F'), array('', '', '', ''), $start_format ) ;
+		}
 	} else {
 		$start_format = get_option( 'date_format');
 	}
