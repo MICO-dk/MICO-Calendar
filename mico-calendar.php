@@ -188,17 +188,38 @@ function the_date_range($post = NULL) {
 		return;
 	}
 
+	$start_format = get_option( 'date_format');
+	$end_format = get_option( 'date_format');
+
 	if (get_option('mcal_force_year') != 1 && $start_date_year == $end_date_year) {
-		// remove the year from the start date
-		$start_format = str_replace(array(', Y', 'y', 'o', 'Y'), array('', '', '', ''), get_option( 'date_format' ) ) ;
+		
+		// remove the month from start date 
 		if($start_date_month == $end_date_month) {
-			$start_format = str_replace(array(', m', 'M', 'f', 'F'), array('', '', '', ''), $start_format ) ;
+			$start_format = get_option( 'date_format' );
+			$month_chars = array('m', 'M', 'f', 'F');
+			$day_chars = array('j', 'J');
+
+			// if the first format character is a day char, remove month from start date. (danish formatting)
+			if (in_array(substr($start_format, 0, 1), $day_chars)) {
+				$start_format = str_replace(array(', m', 'M', 'f', 'F'), array('', '', '', ''), $start_format ) ;
+				$start_format = str_replace(array(', Y', 'y', 'o', 'Y'), array('', '', '', ''), $start_format ) ;
+			} 
+			// Else if the first format characters is a moth char, remove month from end date. (english formatting)
+			elseif(in_array(substr($start_format, 0, 1), $month_chars)) {
+				$end_format = str_replace(array(', m', 'M', 'f', 'F'), array('', '', '', ''), $start_format ) ;
+		
+				$start_format = str_replace(array(', Y', 'y', 'o', 'Y'), array('', '', '', ''), get_option( 'date_format' ) ) ;
+			} else {
+				// just remove the year from the start date
+				$start_format = str_replace(array(', Y', 'y', 'o', 'Y'), array('', '', '', ''), get_option( 'date_format' ) ) ;
+			}
+
+			
+		
 		}
-	} else {
-		$start_format = get_option( 'date_format');
-	}
+	} 
 	
-	echo get_start_date($start_format, $post) . ' - ' . get_end_date('', $post);
+	echo get_start_date($start_format, $post) . ' - ' . get_end_date($end_format, $post);
 	return;
 }
 
