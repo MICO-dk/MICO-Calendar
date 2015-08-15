@@ -30,7 +30,7 @@ $args = array(
 						array(
 							'key' => 'mcal_related_post_id',
 							'value' => get_the_ID(),
-							'compare' => 'LIKE'
+							'compare' => '='
 						),
 	)
 	
