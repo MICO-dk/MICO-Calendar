@@ -762,7 +762,7 @@ class MICO_Calendar {
 								array(
 									'key' => 'mcal_related_post_id',
 									'value' => $post_id,
-									'compare' => 'LIKE'
+									'compare' => '='
 								),
 			)
 		);
