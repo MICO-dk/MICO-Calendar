@@ -151,6 +151,15 @@ class MICO_Calendar {
 		add_action('untrash_post', array($this, 'untrash_related_events') );
 		//delet related events when the main post is deleted
 		add_action('delete_post', array($this, 'delete_related_events') );
+		
+		// add a column
+		add_filter("manage_edit-performance_columns" , array($this, 'add_meta_columns'));
+		// make it sortable
+		add_filter( "manage_edit-performance_sortable_columns", array($this, 'make_meta_columns_sortable') );
+		// sort by the column if set to.
+		add_action( 'pre_get_posts', array($this, 'sorting_by_meta_column') );
+		// add the data to the column
+		add_action( 'manage_posts_custom_column', array($this, 'add_meta_columns_data'), 10, 2 );
 	}
 
 	/**
@@ -1474,6 +1483,64 @@ class MICO_Calendar {
 				wp_delete_post( get_the_id() );
 			}
 		endwhile;
+	}
+	
+	
+	/**
+	 * Add meta columns
+	 * @param [type] $columns [description]
+	 */
+	public function add_meta_columns($columns) {
+		$offset = 2;
+		
+		$new_columns = array();
+		
+		$new_columns['mico_calendar'] = __('Calendar', $this->plugin_slug);
+
+		$columns = array_slice($columns, 0, $offset, true) + $new_columns + array_slice($columns, $offset, NULL, true);
+
+		return $columns;
+	}
+
+
+	/**
+	 * Add sortable functionality
+	 */
+	public function make_meta_columns_sortable($columns){
+		
+		$columns['mico_calendar'] = 'mico_calendar';
+
+		return $columns;
+	}
+
+	/**
+	 * Sort by column
+	 * @param  [type] $query [description]
+	 * @return [type]        [description]
+	 */
+	public function sorting_by_meta_column($query){
+		if( ! is_admin() ){
+			return;
+		}
+	    $orderby = $query->get( 'orderby');
+
+	    
+	    if( $orderby == 'mico_calendar') {
+	        $query->set('meta_key', 'mcal_start');
+	        $query->set('orderby','mcal_start');
+	    }	    
+	}
+
+
+	/**
+	 * Add data to custom column
+	 * @param [type] $column  [description]
+	 * @param [type] $post_id [description]
+	 */
+	public function add_meta_columns_data($column, $post_id){
+
+		the_date_range();
+
 	}
 
 } //END class MICO_Calendar
