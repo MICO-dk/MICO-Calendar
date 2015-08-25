@@ -1545,8 +1545,9 @@ class MICO_Calendar {
 	 * @param [type] $post_id [description]
 	 */
 	public function add_meta_columns_data($column, $post_id){
-
-		the_date_range();
+		if ($column == 'mico_calendar') {
+			the_date_range();
+		}
 
 	}
 
