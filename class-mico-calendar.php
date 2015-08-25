@@ -152,14 +152,21 @@ class MICO_Calendar {
 		//delet related events when the main post is deleted
 		add_action('delete_post', array($this, 'delete_related_events') );
 		
-		// add a column
-		add_filter("manage_edit-performance_columns" , array($this, 'add_meta_columns'));
-		// make it sortable
-		add_filter( "manage_edit-performance_sortable_columns", array($this, 'make_meta_columns_sortable') );
 		// sort by the column if set to.
 		add_action( 'pre_get_posts', array($this, 'sorting_by_meta_column') );
 		// add the data to the column
 		add_action( 'manage_posts_custom_column', array($this, 'add_meta_columns_data'), 10, 2 );
+	
+		$post_types = get_option($this->plugin_db_prefix . '_post_type_support');
+		
+		if(is_array($post_types)) {
+			foreach ( $post_types as $post_type ) {
+				// add a column
+				add_filter("manage_edit-{$post_type}_columns" , array($this, 'add_meta_columns'));
+				// make it sortable
+				add_filter( "manage_edit-{$post_type}_sortable_columns", array($this, 'make_meta_columns_sortable') );
+			}
+		} 
 	}
 
 	/**
