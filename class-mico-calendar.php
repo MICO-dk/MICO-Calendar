@@ -88,7 +88,13 @@ class MICO_Calendar {
 		add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
 
 		//populate the $all_events variable with the events from wordpress
-		add_action( 'wp_loaded', array($this, 'populate_events'));
+		if (isset($_GET['page'])) {
+			
+			if ($_GET['page'] == 'mico-calendar') {
+				add_action( 'wp_loaded', array($this, 'populate_events'));
+			}
+
+		}
 
 		// Load styles and scripts.
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
@@ -151,6 +157,7 @@ class MICO_Calendar {
 		add_action('untrash_post', array($this, 'untrash_related_events') );
 		//delet related events when the main post is deleted
 		add_action('delete_post', array($this, 'delete_related_events') );
+	
 		
 		// sort by the column if set to.
 		add_action( 'pre_get_posts', array($this, 'sorting_by_meta_column') );
@@ -167,7 +174,10 @@ class MICO_Calendar {
 				add_filter( "manage_edit-{$post_type}_sortable_columns", array($this, 'make_meta_columns_sortable') );
 			}
 		} 
+			
+
 	}
+
 
 	/**
 	 * Return the plugin slug.
@@ -395,6 +405,7 @@ class MICO_Calendar {
 
 		// Pass all the events as json (string) to the main script via the variable wp_events
 		wp_localize_script( $this->plugin_slug . '-plugin-script', 'wp_events', $this->all_events);
+		
 
 	}
 
@@ -1162,6 +1173,8 @@ class MICO_Calendar {
 	 */
 	public function events_json_callback() {
 
+		return;
+		/*
 		//Setup WP_Query to fetch all events within the called ranged 
 		//($_GET['start'] and $_GET['end'])
 		$args = array(
@@ -1197,12 +1210,12 @@ class MICO_Calendar {
 				$related_post_type = get_post_type($related_post_id);
 				
 
-				/**
-				 * Make the end date of "all-day" events inclusive.
-				 * FullCalendar behaves according to google cal and iCalendar standards: excluding the end date, when all-day is set.
-				 * This seems wierd to our usecase., so we set the end date to the day after, in order to get the correct display in our calendar view.
-				 * Notice, however, that we dont change that actual data stored i db, as we might want to change this behavior later.
-				 */
+				// 
+				// Make the end date of "all-day" events inclusive.
+				// FullCalendar behaves according to google cal and iCalendar standards: excluding the end date, when all-day is set.
+				// This seems wierd to our usecase., so we set the end date to the day after, in order to get the correct display in our calendar view.
+				// Notice, however, that we dont change that actual data stored i db, as we might want to change this behavior later.
+				// 
 				
 				if(is_all_day()) {
 					$end_date = date('Y-m-d H:i:s', strtotime(get_mcal_end_date('Y-m-d H:i')  . ' + 1 day'));
@@ -1220,14 +1233,17 @@ class MICO_Calendar {
 					'className' => array('post-type-'.$related_post_type, 'mcal-event', 'event-'.get_the_id() ),
 				);
 			
-		endwhile; endif;
+		endwhile; 
+		wp_reset_postdata();
+		endif;
+		
 
 		//echo the JSON-formatted array to js. 
 		echo json_encode($events_json);
 
 		//always die after wordpress based ajax functions. 
 		die();
-
+		*/
 	}
 
 	/**
@@ -1235,6 +1251,16 @@ class MICO_Calendar {
 	 * @return [type] [description]
 	 */
 	public function get_events_json() {
+		
+	
+
+		/**
+		 * The code below seems te be the cause of some weird WordPress behavior, 
+		 * where editing a page in the backend would cause the query to mess up, 
+		 * and instead show the content of the last event, rather then the page intended for editing.
+		 * Its really hard to test, so for now we're simply going to comment it out.
+		 */
+		
 		$args = array(
 			'post_type' => 'event',
 			'post_status' => 'publish',
@@ -1252,12 +1278,12 @@ class MICO_Calendar {
 				$related_post_type = get_post_type($related_post_id);
 				
 
-				/**
-				 * Make the end date of "all-day" events inclusive.
-				 * FullCalendar behaves according to google cal and iCalendar standards: excluding the end date, when all-day is set.
-				 * This seems wierd to our usecase., so we set the end date to the day after, in order to get the correct display in our calendar view.
-				 * Notice, however, that we dont change that actual data stored i db, as we might want to change this behavior later.
-				 */
+				
+				//Make the end date of "all-day" events inclusive.
+				//FullCalendar behaves according to google cal and iCalendar standards: excluding the end date, when all-day is set.
+				//This seems wierd to our usecase., so we set the end date to the day after, in order to get the correct display in our calendar view.
+				//Notice, however, that we dont change that actual data stored i db, as we might want to change this behavior later.
+				//
 				
 				if(is_all_day()) {
 					$end_date = date('Y-m-d H:i:s', strtotime(get_end_date('Y-m-d H:i')  . ' + 1 day'));
@@ -1275,11 +1301,14 @@ class MICO_Calendar {
 					'className' => array('post-type-'.$related_post_type, 'mcal-event', 'event-'.get_the_id() ),
 				);
 			
-		endwhile; endif;
+		endwhile; 
+		wp_reset_postdata();
+		endif;
 		
 		//echo the JSON-formatted array to js.
 		
 		return json_encode($events_json);
+		
 	}
 
 	/**
@@ -1444,13 +1473,18 @@ class MICO_Calendar {
 			'post_status' => array('any','trash','auto-draft'),
 			'posts_per_page' => -1,
 		);
-		$query = new WP_Query( $args );
+		//$query = new WP_Query( $args );
 		
-		while ( $query->have_posts() ) : $query->the_post();
-			if(get_post_meta( get_the_id(), 'mcal_related_post_id', true ) == $pid ) {
-				wp_trash_post( get_the_id() );
+		$events = get_posts( $args );
+		
+		foreach ($events as $event):
+
+			if(get_post_meta( $event->ID, 'mcal_related_post_id', true ) == $pid ) {
+				wp_trash_post( $event->ID );
 			}
-		endwhile;
+
+		endforeach;
+
 	}
 
 	/**
@@ -1462,13 +1496,16 @@ class MICO_Calendar {
 			'post_status' => 'trash',
 			'posts_per_page' => -1,
 		);
-		$query = new WP_Query( $args );
+		//$query = new WP_Query( $args );
+		$events = get_posts( $args );
 		
-		while ( $query->have_posts() ) : $query->the_post();
-			if(get_post_meta( get_the_id(), 'mcal_related_post_id', true ) == $pid ) {
-				wp_untrash_post( get_the_id() );
+		foreach ($events as $event):
+
+			if(get_post_meta( $event->ID, 'mcal_related_post_id', true ) == $pid ) {
+				wp_untrash_post( $event->ID );
 			}
-		endwhile;
+
+		endforeach;
 	}
 
 	/**
@@ -1483,16 +1520,20 @@ class MICO_Calendar {
 			'post_status' => array('publish','trash','auto-draft', 'pending', 'draft', 'future', 'private', 'inherit'),
 			'posts_per_page' => -1,
 		);
-		$query = new WP_Query( $args );
+		//$query = new WP_Query( $args );
+		$events = get_posts( $args );
 		
-		while ( $query->have_posts() ) : $query->the_post();
-			if(get_post_meta( get_the_id(), 'mcal_related_post_id', true ) == $pid ) {
-				wp_delete_post( get_the_id() );
+		foreach ($events as $event):
+
+			if(get_post_meta( $event->ID, 'mcal_related_post_id', true ) == $pid ) {
+				wp_delete_post( $event->ID );
 			}
-		endwhile;
+
+		endforeach;
+
 	}
-	
-	
+
+
 	/**
 	 * Add meta columns
 	 * @param [type] $columns [description]
@@ -1545,10 +1586,16 @@ class MICO_Calendar {
 	 * @param [type] $post_id [description]
 	 */
 	public function add_meta_columns_data($column, $post_id){
+
 		if ($column == 'mico_calendar') {
 			the_date_range();
 		}
+		
 
 	}
 
+
 } //END class MICO_Calendar
+
+
+
