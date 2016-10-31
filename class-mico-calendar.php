@@ -416,10 +416,13 @@ class MICO_Calendar {
 	 * @link 		FullCalendar, http://arshaw.com/fullcalendar/
 	 */
 	public function enqueue_fullcalendar_scripts() {
-		wp_enqueue_script( 'moment', plugins_url('assets/fullcalendar/lib/moment.min.js', __FILE__), array('jquery'), '1.0.0', true );
-		wp_enqueue_script( 'fullcalendar-editable', plugins_url('assets/fullcalendar/lib/jquery-ui.custom.min.js', __FILE__), array('jquery', 'moment'), '1.0.0', true );
-		wp_enqueue_script( 'fullcalendar-script', plugins_url('assets/fullcalendar/fullcalendar.min.js', __FILE__), array('jquery', 'moment'), '1.0.0', true );
-		wp_enqueue_script( 'fullcalendar-lang-script', plugins_url('assets/fullcalendar/lang-all.js', __FILE__), array('fullcalendar-script'), self::VERSION, true );
+		$screen = get_current_screen();
+		if ($screen->base == 'toplevel_page_mico-calendar') {
+			wp_enqueue_script( 'moment', plugins_url('assets/fullcalendar/lib/moment.min.js', __FILE__), array('jquery'), '1.0.0', true );
+			wp_enqueue_script( 'fullcalendar-editable', plugins_url('assets/fullcalendar/lib/jquery-ui.custom.min.js', __FILE__), array('jquery', 'moment'), '1.0.0', true );
+			wp_enqueue_script( 'fullcalendar-script', plugins_url('assets/fullcalendar/fullcalendar.min.js', __FILE__), array('jquery', 'moment'), '1.0.0', true );
+			wp_enqueue_script( 'fullcalendar-lang-script', plugins_url('assets/fullcalendar/lang-all.js', __FILE__), array('fullcalendar-script'), self::VERSION, true );
+		}
 	}
 	
 	/**
