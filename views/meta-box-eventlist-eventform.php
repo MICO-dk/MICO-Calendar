@@ -47,4 +47,7 @@
 				</span>
 			</td>
 		</tr>
+
+		<?php do_action( 'mcal_meta_box_event_form', get_the_id(), get_related_id() ); ?>
+
 	</table>

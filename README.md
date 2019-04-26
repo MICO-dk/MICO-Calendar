@@ -110,6 +110,104 @@ When using this in a loop all the template tags should work fine. If you want to
 ```
 
 
+### Adding custom fields
+You can add your own fields to the events via a few actions. Note that these fields MUST be prefixed with "mcal_cf_" in order to work. Otherwise Ajax wont be able to recognize them for saving. See example below
+
+```PHP
+/**
+ * Add markup for custom fields
+ * Add this to functions.php or admin functions plugin
+ */
+add_action( 'mcal_meta_box_event_form', 'mytheme_add_mcal_field_markup', 10, 2 );
+function mytheme_add_mcal_field_markup($event_id, $related_id) {
+	
+	$link = get_post_meta( get_the_id(), 'mcal_cf_link', true );
+
+	$contact = get_post_meta( get_the_id(), 'mcal_cf_contact', true );
+	
+	$args = array(
+		'posts_per_page'   => -1,
+		'orderby'          => 'title',
+		'order'            => 'ASC',
+		'post_type'        => 'employee',
+		'post_status'      => 'publish',
+	);
+	$posts_array = get_posts( $args );
+
+	?>
+
+	<tr valign="top">
+		<td scope="row" >
+			<span class="dashicons dashicons-admin-users"></span>
+			<label for="mcal_cf_contact" class=""><?php _e('Main contact', 'mico-calendar'); ?></label>
+		</td>
+		<td>
+			<select name="mcal_cf_contact" id="mcal_cf_contact">
+				<option value="">Select option</option>
+				<?php foreach ($posts_array as $post): ?>
+					<option value="<?php echo $post->ID ?>" <?php selected( $contact, $post->ID, true ) ?>><?php echo $post->post_title ?></option>
+				<?php endforeach ?>
+			</select>
+			
+		</td>
+	</tr>
+
+
+	<tr valign="top">
+		<td scope="row" >
+			<span class="dashicons dashicons-admin-site"></span>
+			<label for="mcal_cf_link" class=""><?php _e('Link', 'mico-calendar'); ?></label>
+		</td>
+		<td>
+			<input id="mcal_cf_link" class="mcal_cf_link" name="mcal_cf_link" type="text" value="<?php echo $link; ?>">
+		</td>
+	</tr>
+
+	<?php
+}
+
+```
+
+
+```PHP
+/**
+ * Make sure custom fields are saved when editing the event post meta box
+ * Add this to functions.php or admin functions plugin
+ */
+add_action( 'mcal_save_meta_box_data', 'mytheme_save_mcal_data', 10, 3 );
+function mytheme_save_mcal_data($post_id, $prefix, $data) {
+
+	if ( isset( $data['mcal_cf_link'] ) ) {
+		update_post_meta( $post_id, 'mcal_cf_link', esc_url_raw( $data['mcal_cf_link']) );
+	}
+
+	if ( isset( $data['mcal_cf_contact'] ) ) {
+		update_post_meta( $post_id, 'mcal_cf_contact', sanitize_text_field( $data['mcal_cf_contact'] ) );
+	}
+
+}
+```
+
+```PHP
+/**
+ * Make sure custom fields are saved when editing the event via widget in connected post
+ * Add this to functions.php or admin functions plugin
+ */
+add_action( 'mcal_update_post_meta_on_insert', 'mytheme_update_post_meta_on_insert', 10, 2 );
+function mytheme_update_post_meta_on_insert($new_event_id, $data) {
+
+	if (isset($data['mcal_cf_link'])) {
+		update_post_meta( $new_event_id, 'mcal_cf_link', esc_url_raw( $data['mcal_cf_link'] ) );
+	}
+
+	if (isset($data['mcal_cf_contact'])) {
+		update_post_meta( $new_event_id, 'mcal_cf_contact', sanitize_text_field( $data['mcal_cf_contact'] ) );
+	}
+	
+}
+```
+
+
 ###Translations
 The Mico Calendar includes a fully translationready .pot file.
 

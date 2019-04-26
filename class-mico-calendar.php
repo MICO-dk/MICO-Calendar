@@ -417,7 +417,7 @@ class MICO_Calendar {
 	 */
 	public function enqueue_fullcalendar_scripts() {
 		$screen = get_current_screen();
-		if ($screen->base == 'toplevel_page_mico-calendar') {
+		if ($screen->base === 'toplevel_page_mico-calendar') {
 			wp_enqueue_script( 'moment', plugins_url('assets/fullcalendar/lib/moment.min.js', __FILE__), array('jquery'), '1.0.0', true );
 			wp_enqueue_script( 'fullcalendar-editable', plugins_url('assets/fullcalendar/lib/jquery-ui.custom.min.js', __FILE__), array('jquery', 'moment'), '1.0.0', true );
 			wp_enqueue_script( 'fullcalendar-script', plugins_url('assets/fullcalendar/fullcalendar.min.js', __FILE__), array('jquery', 'moment'), '1.0.0', true );
@@ -674,6 +674,8 @@ class MICO_Calendar {
 		
 		}
 
+		do_action( 'mcal_save_meta_box_data', $post_id, $this->plugin_db_prefix, $_POST );
+
 
 	} // END save_event_meta_box_data()
 
@@ -765,7 +767,7 @@ class MICO_Calendar {
 	
 		/* OK, it's safe for us to save the data now. */
 
-		$this->update_related_post_event_data($post_id);
+		//$this->update_related_post_event_data($post_id);
 		
 
 	}
@@ -1389,6 +1391,8 @@ class MICO_Calendar {
 
 		update_post_meta( $new_event_id, $this->plugin_db_prefix . '_related_post_id', $related_post_id);
 		update_post_meta( $new_event_id, $this->plugin_db_prefix . '_related_post_type', $related_post_type);
+
+		do_action('mcal_update_post_meta_on_insert', $new_event_id, $_POST['event_data']);
 
 		//update events based data for this post
 		if(!is_null($relate_post_id)) {

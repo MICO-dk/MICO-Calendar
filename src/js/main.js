@@ -125,7 +125,21 @@ jQuery(document).ready(function($) {
 						'end_date': formWrapper.find('input[name="mcal_end_date"]').val(),
 						'end_hh': formWrapper.find('input[name="mcal_end_hh"]').val(),
 						'end_mm': formWrapper.find('input[name="mcal_end_mm"]').val(),
+
+						//'all_form_fields': this.closest('.mcal_event_form').serialize(),
 					}
+
+					// Add the value of all elements with id starting with #mcal_cf_
+					var custom_fields = formWrapper.find('[id^="mcal_cf_"]');
+					console.log(custom_fields);
+
+					$.each( custom_fields, function( key, value ) {
+					  	id = $(value).attr('id');
+					  	eventObj[id] = $(value).val();
+					});
+
+					console.log(eventObj);
+
 
 					self.saveEvent(eventObj);
 
@@ -398,70 +412,72 @@ jQuery(document).ready(function($) {
         });
 	}
 
-console.log(wp_events);
+	if($().fullCalendar) {
+     
+		$('#calendar').fullCalendar({
+		   
+		   	//set language dynamic via wordpress?? 
+		   	lang: wp_language_code,
 
-	$('#calendar').fullCalendar({
-	   
-	   	//set language dynamic via wordpress?? 
-	   	lang: wp_language_code,
+		   	//enable drag/drop behavior
+		    editable: true,
 
-	   	//enable drag/drop behavior
-	    editable: true,
+		    // first day of week. 0 = "sunday", 1 = "monday" etc..
+		    firstDay: wp_start_of_week,
+		    
+		    // determines how many weeks to show in each month 'fixed', 'liquid' or 'variable'.
+		    weekMode: 'variable',
+			
+			//display week numbers
+		    weekNumbers: false, 
+		    
+		    //the format of time displayed in the calendar
+		    timeFormat: 'HH:mm',
 
-	    // first day of week. 0 = "sunday", 1 = "monday" etc..
-	    firstDay: wp_start_of_week,
-	    
-	    // determines how many weeks to show in each month 'fixed', 'liquid' or 'variable'.
-	    weekMode: 'variable',
-		
-		//display week numbers
-	    weekNumbers: false, 
-	    
-	    //the format of time displayed in the calendar
-	    timeFormat: 'HH:mm',
+		    header: {
+	    		left:   'prev today next',
+	    		center: '',
+	    		right:  'title'
+			},
+			
+			nextDayThreshold: "00:00:00",
 
-	    header: {
-    		left:   'prev today next',
-    		center: '',
-    		right:  'title'
-		},
-		
-		nextDayThreshold: "00:00:00",
+			aspectRatio: 1.7,
 
-		aspectRatio: 1.7,
+			//eventColor: $('#calendar').attr('data-eventcolor'),
+			// eventTextColor: '#fff',
+		    events: $.parseJSON(wp_events),
 
-		//eventColor: $('#calendar').attr('data-eventcolor'),
-		// eventTextColor: '#fff',
-	    events: $.parseJSON(wp_events),
+		   	viewRender: function(){
+		   		//add an extra class to fullcalendar (current week)
+				$('.fc-today').parent().addClass('fc-current-week');
+		   	},
+		    
+		    eventDrop: function(event, delta, revertFunc) {
+				updateEvent(event, delta, revertFunc);
+	    	},
 
-	   	viewRender: function(){
-	   		//add an extra class to fullcalendar (current week)
-			$('.fc-today').parent().addClass('fc-current-week');
-	   	},
-	    
-	    eventDrop: function(event, delta, revertFunc) {
-			updateEvent(event, delta, revertFunc);
-    	},
+	    	eventResize: function(event, delta, revertFunc) {
+	    		updateEvent(event, delta, revertFunc);
+		    },
+		    eventMouseover: function( event, jsEvent, view ) { 
+		    	//console.log(event);
+		    	$(".event-" + event._id).addClass('_is_hover');
+		    },
+		    eventMouseout: function( event, jsEvent, view ) { 
+		    	$(".event-" + event._id).removeClass('_is_hover');
+		    },
+		    dragOpacity: {
+				    // for agendaWeek and agendaDay
+				    agenda: .5,
 
-    	eventResize: function(event, delta, revertFunc) {
-    		updateEvent(event, delta, revertFunc);
-	    },
-	    eventMouseover: function( event, jsEvent, view ) { 
-	    	//console.log(event);
-	    	$(".event-" + event._id).addClass('_is_hover');
-	    },
-	    eventMouseout: function( event, jsEvent, view ) { 
-	    	$(".event-" + event._id).removeClass('_is_hover');
-	    },
-	    dragOpacity: {
-			    // for agendaWeek and agendaDay
-			    agenda: .5,
+				    // for all other views
+				    '': .8
+				}
 
-			    // for all other views
-			    '': .8
-			}
+		});
 
-	});
+	}
 
 
 }); //end of jquery no-conflict
