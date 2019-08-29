@@ -205,9 +205,10 @@ function mytheme_update_post_meta_on_insert($new_event_id, $data) {
 	}
 	
 	/**
-	 * NOTE ABOUT CHECKBOXES. Checboxes need check for the string value "true" in order to work.. 
+	 * NOTE ABOUT CHECKBOXES. Dont wrap the updtae func in an isset, since 
+	 * checkboxes arent set when they havent been checked
 	 */
-	 // $checkbox = ( isset($data['my_checkbox']) && $data['my_checkbox'] == 'true' ) ? 1 : 0;
+	 // $checkbox = isset($data['my_checkbox'])? 1 : 0;
 	 // update_post_meta( $new_event_id, 'my_checkbox', $checkbox);	
 	
 }

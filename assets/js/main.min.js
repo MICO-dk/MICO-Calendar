@@ -134,8 +134,18 @@ jQuery(document).ready(function($) {
 					console.log(custom_fields);
 
 					$.each( custom_fields, function( key, value ) {
-					  	id = $(value).attr('id');
-					  	eventObj[id] = $(value).val();
+					  	
+					  	if (value.type === 'checkbox') {
+					  		if ($(value).is(':checked')) {
+					  			id = $(value).attr('id');
+					  			eventObj[id] = "on";
+					  		}
+					  		
+					  	} else {
+					  		id = $(value).attr('id');
+					  		eventObj[id] = $(value).val();	
+					  	}
+					  	
 					});
 
 					console.log(eventObj);
