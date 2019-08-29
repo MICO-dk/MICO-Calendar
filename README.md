@@ -204,6 +204,12 @@ function mytheme_update_post_meta_on_insert($new_event_id, $data) {
 		update_post_meta( $new_event_id, 'mcal_cf_contact', sanitize_text_field( $data['mcal_cf_contact'] ) );
 	}
 	
+	/**
+	 * NOTE ABOUT CHECKBOXES. Checboxes need check for the string value "true" in order to work.. 
+	 */
+	 // $checkbox = ( isset($data['my_checkbox']) && $data['my_checkbox'] == 'true' ) ? 1 : 0;
+	 // update_post_meta( $new_event_id, 'my_checkbox', $checkbox);	
+	
 }
 ```
 
